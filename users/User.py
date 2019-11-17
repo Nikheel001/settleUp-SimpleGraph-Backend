@@ -94,7 +94,7 @@ class User:
         return True
 
     @classmethod
-    def fromDB(cls, usr):
+    def fromDict(cls, usr):
         x = User()
         x.ObjectId = usr['_id']
         x.Name = usr['name']

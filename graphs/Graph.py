@@ -2,15 +2,15 @@ from collections import defaultdict
 from users.User import User
 
 
-class Grpah:
+class Graph:
 
     __slots__ = ('__value', '__id', '__name', '__visit_it')
-    __visit_it = set()
 
     def __init__(self):
         self.__value = defaultdict(User)
         self.__id = ''
         self.__name = ''
+        self.__visit_it = set()
 
     def __set_name(self, name):
         if not type(name) == str:
@@ -82,8 +82,8 @@ class Grpah:
         return {'name': self.Name, 'value': self.Value}
 
     @classmethod
-    def fromDB(cls, graph):
-        x = Grpah()
+    def fromDict(cls, graph):
+        x = Graph()
         x.Name = graph['name']
         x.Value = graph['value']
         x.ObjectId = graph['_id']

@@ -1,14 +1,19 @@
-from graphs.graphUtil import processAll, clearGraph, transaction, graph, showNetwork
+from graphs.Graph import Graph
+
+g = Graph()
+g.Name = "General"
 
 t = int(input())
 while t>0:
     x, y, money = [_ for _ in input().split(' ')]
-    transaction(x, y, int(money))
+    g.transaction(x, y, int(money))
     t-=1
 
 
 def test_it():
-    showNetwork()
-    processAll()
-    clearGraph()
-    showNetwork()
+    g.showNetwork()
+    g.processAll()
+    g.clearGraph()
+    g.showNetwork()
+
+test_it()
