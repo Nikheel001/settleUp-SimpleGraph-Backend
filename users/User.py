@@ -11,6 +11,17 @@ class User:
         self.__id = ''
         self.__name = ''
         self.__no = ''
+        self.__group = []
+
+    def __set_group(self, group):
+        if not type(group)==list :
+            raise TypeError('Cell number should be correct')
+        self.__group = group
+    
+    def __get_group(self): return self.__group
+
+    def __del_group(self): print("Not allowed")
+    Groups = property(__get_group, __set_group, __del_group, 'List of groups where user is a member')
 
     def __set_no(self, no):
         if not (type(no)==str and len(no)==10):
@@ -82,6 +93,10 @@ class User:
         return len(self.__owes)
 
     def userAsDict(self):
+        '''
+        represent User as Dictionary(or Json object)
+        Groups not mentioned
+        '''
         return {'name': self.Name, 'owed': self.Owed, 'owes': self.Owes, 'CellNumber': self.CellNo}
 
     @classmethod
@@ -95,10 +110,14 @@ class User:
 
     @classmethod
     def fromDict(cls, usr):
+        '''
+        Initilize User object from given dictionary(or Json)
+        '''
         x = User()
         x.ObjectId = usr['_id']
         x.Name = usr['name']
         x.Owed = usr['owed']
         x.Owes = usr['owes']
         x.CellNo = usr['no']
+        x.Groups = usr['groups']
         return x

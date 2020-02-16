@@ -21,6 +21,16 @@ def testOp():
         headshot = User.fromDict(users.find_one({"name": "Anil"}))
         print(headshot)
 
+def findByCellNo(cellNo):
+    '''
+    Identifies user from phone number
+    '''
+    with getUserContext() as users:
+        try:
+            return User.fromDict(users.find_one({"no": cellNo}))
+        except expression as identifier:
+            return None
+
 # Testing to fetch user from db
 # headshot = User.fromDict(fetchOneUser({"name": "Headshot"}))
 # print(headshot)

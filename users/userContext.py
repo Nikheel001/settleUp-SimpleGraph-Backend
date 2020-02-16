@@ -12,5 +12,6 @@ def getUserContext():
         print("ConnectionFailure" + e)
     except Exception as exc:
         print(exc)
+        # notify Headshot
     finally:
         closeDbConnection()
